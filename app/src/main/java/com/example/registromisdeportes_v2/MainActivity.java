@@ -40,11 +40,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private static final int VENGO_GALERIA = 101;
     private static final int PIDO_PERMISO_ESCRITURA = 111;
     private static final int VENGO_CAMARA = 76;
+    private static final int CAMBIO_PANTALLA = 24;
+    private static final int COD_CAMBIO = 13;
+    private static int num_intentos = 3;
+    private static final String CLAVE = "CLAVE";
     private static final String NOMBRE_FICHERO = "DATOS";
     private static final String PASSWORD_NAME = "MY_PASSWORD";
     private static final String IMAGE_PATH = "IMAGE_PATH";
     private static final String BTN_BLOCK = "BTN_BLOCK";
-    private static int num_intentos = 3;
+
     Button btnSacarFoto, btnCogerFoto, btnAcceder;
     TextView Contrasenna;
     ImageView FotoPerfil;
@@ -108,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             public void onClick(View view) {
                 SharedPreferences MisCredenciales = getSharedPreferences(NOMBRE_FICHERO, MODE_PRIVATE);
                 String original_pass = MisCredenciales.getString(PASSWORD_NAME, "No Contraseña");
+                String photo_path = MisCredenciales.getString(IMAGE_PATH, "No Foto");
 
                 if (num_intentos > 0){
 
@@ -122,7 +127,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         if (original_pass.equals(Contrasenna.getText().toString())){
 
                             if (photo_path != "No Foto"){
-                                //Codigo para moverme de activity
+                                Intent intent = new Intent(MainActivity.this, DeportesActivity.class);
+                                intent.putExtra(CLAVE, original_pass);
+                                startActivityForResult(intent, COD_CAMBIO);
                             } else {
                                 Toast.makeText(MainActivity.this, R.string.errorFoto, Toast.LENGTH_SHORT).show();
                                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.traslacion);
@@ -228,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         if (sensorEvent.sensor.getType() == Sensor.TYPE_ORIENTATION){
-            Log.d("senson", "" + sensorEvent.values[1]);
+            //Log.d("senson", "" + sensorEvent.values[1]);
             if (sensorEvent.values[1] >= 175 && sensorEvent.values[1] <= 180){
                 desbloquearBoton();
             }
@@ -248,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         SharedPreferences MisCredenciales = getSharedPreferences(NOMBRE_FICHERO, MODE_PRIVATE);
         SharedPreferences.Editor editor = MisCredenciales.edit();
 
-        if (resultCode == RESULT_OK && requestCode == VENGO_GALERIA){
+        /*if (resultCode == RESULT_OK && requestCode == VENGO_GALERIA){
             Uri ruta = data.getData();
             editor.putString(IMAGE_PATH, ruta.toString());
             editor.apply();
@@ -259,6 +266,32 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 editor.putString(IMAGE_PATH, fichero.getAbsolutePath());
                 editor.apply();
                 actualizarGaleria(fichero.getAbsolutePath());
+            }
+        } else {
+            Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+        }*/
+
+        if (resultCode == RESULT_OK){
+            switch (requestCode){
+
+                case VENGO_GALERIA:
+                        Uri ruta = data.getData();
+                        editor.putString(IMAGE_PATH, ruta.toString());
+                        editor.apply();
+                        FotoPerfil.setImageURI(ruta);
+                    break;
+                case VENGO_CAMARA:
+                        FotoPerfil.setImageBitmap(BitmapFactory.decodeFile(fichero.getAbsolutePath()));
+                        editor.putString(IMAGE_PATH, fichero.getAbsolutePath());
+                        editor.apply();
+                        actualizarGaleria(fichero.getAbsolutePath());
+                    break;
+                case COD_CAMBIO:
+
+                    break;
+                default:
+                    Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+                    break;
             }
         } else {
             Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
