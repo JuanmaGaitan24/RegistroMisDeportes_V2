@@ -35,7 +35,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener {
+public class
+MainActivity extends AppCompatActivity implements SensorEventListener {
 
     private static final int VENGO_GALERIA = 101;
     private static final int PIDO_PERMISO_ESCRITURA = 111;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private static final String PASSWORD_NAME = "MY_PASSWORD";
     private static final String IMAGE_PATH = "IMAGE_PATH";
     private static final String BTN_BLOCK = "BTN_BLOCK";
+    private static final String BD_CREATE = "BD_CREATE";
 
     Button btnSacarFoto, btnCogerFoto, btnAcceder;
     TextView Contrasenna;
@@ -56,10 +58,20 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     SensorManager sensorManager;
     MediaPlayer mediaPlayer;
 
+    String[] nombreDeportes = new String[]{};
+    String[] descripcionDeportes = new String[]{};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        nombreDeportes = new String[]{"Natacion", "Atletismo", "Ciclismo"};
+        descripcionDeportes = new String[]{
+                "La natación es un deporte que consiste en el desplazamiento de una persona en el agua, sin que esta toque el suelo.",
+                "El atletismo es un deporte que agrupa numerosas disciplinas. En este conjunto de prácticas se busca superar al adversario en velocidad o en resistencia.",
+                "El ciclismo es un deporte en el que se utiliza una bicicleta para recorrer circuitos al aire libre o en pista cubierta y que engloba diferentes especialidades."
+        };
 
         SharedPreferences MisCredenciales = getSharedPreferences(NOMBRE_FICHERO, MODE_PRIVATE);
         PedirPermisosFoto();
@@ -77,6 +89,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         String original_pass = MisCredenciales.getString(PASSWORD_NAME, "No Contraseña");
         String photo_path = MisCredenciales.getString(IMAGE_PATH, "No Foto");
         boolean btn_block = MisCredenciales.getBoolean(BTN_BLOCK, false);
+        boolean bd_creada = MisCredenciales.getBoolean(BD_CREATE, false);
+
+        if (!bd_creada){
+            crearBaseDatos();
+        }
 
         if (original_pass == "No Contraseña"){
             btnAcceder.setText("Registrarte");
@@ -154,6 +171,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
+    private void crearBaseDatos() {
+        ManejadorBD manejadorBD = new ManejadorBD(this);
+        for (int i = 0; i < nombreDeportes.length; i++){
+            manejadorBD.InsertarDeporte(nombreDeportes[i], descripcionDeportes[i]);
+        }
+
+        SharedPreferences MisCredenciales = getSharedPreferences(NOMBRE_FICHERO, MODE_PRIVATE);
+        SharedPreferences.Editor editor = MisCredenciales.edit();
+        editor.putBoolean(BD_CREATE, true);
+        editor.apply();
+    }
+
     private void PedirPermisosFoto() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
@@ -176,13 +205,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             e.printStackTrace();
         }
 
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(this, "com.example.registromisdeportes.fileprovider", fichero));
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(this, "com.example.registromisdeportes_v2.fileprovider", fichero));
 
-        if (intent.resolveActivity(getPackageManager()) != null){
+        //if (intent.resolveActivity(getPackageManager()) != null){
             startActivityForResult(intent, VENGO_CAMARA);
-        } else {
+        /*} else {
             Toast.makeText(this, "Necesitas una camara", Toast.LENGTH_SHORT).show();
-        }
+        }*/
 
     }
 
