@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_main);
 
         SharedPreferences MisCredenciales = getSharedPreferences(NOMBRE_FICHERO, MODE_PRIVATE);
+        PedirPermisosFoto();
 
         mediaPlayer = MediaPlayer.create(this, R.raw.nuke_alarm);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if (photo_path == "No Foto"){
             FotoPerfil.setImageURI(Uri.parse(String.valueOf(R.drawable.nophoto)));
         } else {
-            FotoPerfil.setImageURI(Uri.parse(MisCredenciales.getString(IMAGE_PATH, "")));
+            FotoPerfil.setImageURI(Uri.parse(photo_path));
         }
 
         if (btn_block){
@@ -95,16 +96,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         btnCogerFoto.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-                cargarImagen();
-
-            }
+            public void onClick(View view) {cargarImagen();}
         });
 
         btnSacarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {PedirPermisosFoto();}
+            public void onClick(View view) {hacerFoto();}
         });
 
         btnAcceder.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PIDO_PERMISO_ESCRITURA);
             }
         } else {
-            hacerFoto();
+
         }
     }
 

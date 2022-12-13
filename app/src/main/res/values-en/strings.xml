@@ -9,4 +9,6 @@
     <string name="password">Password</string>
     <string name="errorFoto">A photo is missing</string>
     <string name="errorClave">Wrong Password</string>
+    <string name="NuevoDeporte">Add Sport</string>
+    <string name="HaciaActividades">Go to Activities</string>
 </resources>

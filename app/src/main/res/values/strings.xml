@@ -8,4 +8,6 @@
     <string name="cogerfoto">Coger Foto</string>
     <string name="errorFoto">Falta una foto</string>
     <string name="errorClave">Clave Erronea</string>
+    <string name="NuevoDeporte">Agregar Deporte</string>
+    <string name="HaciaActividades">Ir a Actividades</string>
 </resources>
