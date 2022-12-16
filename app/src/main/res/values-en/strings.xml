@@ -11,4 +11,8 @@
     <string name="errorClave">Wrong Password</string>
     <string name="NuevoDeporte">Add Sport</string>
     <string name="HaciaActividades">Go to Activities</string>
+    <string name="nombreDep">Name</string>
+    <string name="DescripcionDep">Description...</string>
+    <string name="ModificarDeporte">Update Sport</string>
+    <string name="BorrarDeporte">Delete Sport</string>
 </resources>

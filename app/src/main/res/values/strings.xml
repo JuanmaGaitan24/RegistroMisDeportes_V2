@@ -10,4 +10,8 @@
     <string name="errorClave">Clave Erronea</string>
     <string name="NuevoDeporte">Agregar Deporte</string>
     <string name="HaciaActividades">Ir a Actividades</string>
+    <string name="nombreDep">Nombre</string>
+    <string name="DescripcionDep">Descripcion...</string>
+    <string name="ModificarDeporte">Modificar Deporte</string>
+    <string name="BorrarDeporte">Borrar Deporte</string>
 </resources>
