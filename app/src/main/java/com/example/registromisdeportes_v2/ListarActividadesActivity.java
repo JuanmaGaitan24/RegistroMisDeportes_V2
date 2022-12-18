@@ -64,7 +64,7 @@ public class ListarActividadesActivity extends AppCompatActivity {
         if (cursor != null && cursor.getCount() > 0){
             ArrayActividad = new Actividad[cursor.getCount()];
             while (cursor.moveToNext()){
-                Actividad actividad1 = new Actividad(cursor.getInt(0), cursor.getInt(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getInt(6));
+                Actividad actividad1 = new Actividad(cursor.getInt(0), cursor.getInt(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getInt(6), cursor.getInt(7));
                 ArrayActividad[cont] = actividad1;
                 cont++;
                 actividad.add(actividad1);
@@ -100,6 +100,7 @@ public class ListarActividadesActivity extends AppCompatActivity {
             TextView hora = mifila.findViewById(R.id.textViewHora);
             TextView latitud = mifila.findViewById(R.id.textViewLatitud);
             TextView longitud = mifila.findViewById(R.id.textViewLongitud);
+            TextView bateria = mifila.findViewById(R.id.textViewBateria);
             Button btnLocalizar = mifila.findViewById(R.id.buttonLocalizar);
 
             String lat = ArrayActividad[position].getLatitud();
@@ -111,6 +112,7 @@ public class ListarActividadesActivity extends AppCompatActivity {
             hora.setText(ArrayActividad[position].getHora());
             latitud.setText(ArrayActividad[position].getLatitud());
             longitud.setText(ArrayActividad[position].getLongitud());
+            bateria.setText(ArrayActividad[position].getBateria());
 
             btnLocalizar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -139,9 +141,9 @@ public class ListarActividadesActivity extends AppCompatActivity {
 
     public static class Actividad{
         String  fecha, hora, latitud, longitud;
-        int id, id_dep, duracion;
+        int id, id_dep, duracion, bateria;
 
-        public Actividad(int id, int id_dep, String fecha, String hora, String latitud, String longitud, int duracion) {
+        public Actividad(int id, int id_dep, String fecha, String hora, String latitud, String longitud, int duracion, int bateria) {
             this.id = id;
             this.id_dep = id_dep;
             this.fecha = fecha;
@@ -149,6 +151,7 @@ public class ListarActividadesActivity extends AppCompatActivity {
             this.latitud = latitud;
             this.longitud = longitud;
             this.duracion = duracion;
+            this.bateria = bateria;
         }
 
         @NonNull
@@ -165,6 +168,14 @@ public class ListarActividadesActivity extends AppCompatActivity {
                    ", duracion=" + duracion + '\'' +
                    '}';
 
+        }
+
+        public int getBateria() {
+            return bateria;
+        }
+
+        public void setBateria(int bateria) {
+            this.bateria = bateria;
         }
 
         public String getFecha() {

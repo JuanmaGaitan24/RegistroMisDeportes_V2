@@ -7,10 +7,12 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -82,7 +84,16 @@ public class CrearActividadActivity extends AppCompatActivity {
                         String hora = new SimpleDateFormat("HH:mm:ss").format(new Date());
                         String Latitud = String.valueOf(loc.getLatitude());
                         String Longitud = String.valueOf(loc.getLongitude());
-                        manejadorBD.InsertarActividad(id_dep, fecha, hora, Latitud, Longitud, minutos);
+
+                        IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+                        Intent batteryStatus = registerReceiver(null, ifilter);
+
+                        int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+                        int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+                        float battery = (level / (float)scale)*100;
+                        int bateria = Integer.valueOf((int) battery);
+
+                        manejadorBD.InsertarActividad(id_dep, fecha, hora, Latitud, Longitud, minutos, bateria);
                         Toast.makeText(CrearActividadActivity.this, "Insertado con existo", Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         Toast.makeText(CrearActividadActivity.this, R.string.ErrorCrear, Toast.LENGTH_SHORT).show();

@@ -25,6 +25,7 @@ public class ManejadorBD extends SQLiteOpenHelper {
     private static final String HORA_ACT = "HORA_ACT";
     private static final String LATITUD_ACT = "LATITUD_ACT";
     private static final String LONGITUD_ACT = "LONGITUD_ACT";
+    private static final String BATERIA = "BATERIA";
 
     public ManejadorBD(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version){
         super(context, name, factory, version);
@@ -48,6 +49,7 @@ public class ManejadorBD extends SQLiteOpenHelper {
                 + LATITUD_ACT + " TEXT, "
                 + LONGITUD_ACT + " TEXT, "
                 + DUR_ACTIVIDAD + " INTEGER, "
+                + BATERIA + "INTEGER, "
                 + " FOREIGN KEY(" + ID_DEP + ") REFERENCES " + TAB_DEPORTES + "(" + ID_DEPORTE + ") "
                 + ")");
 
@@ -85,7 +87,7 @@ public class ManejadorBD extends SQLiteOpenHelper {
         return res > 0;
     }
 
-    public boolean InsertarActividad(int id_dep, String fecha, String hora, String Lat, String Lon, int min){
+    public boolean InsertarActividad(int id_dep, String fecha, String hora, String Lat, String Lon, int min, int bateria){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(ID_DEP, id_dep);
@@ -94,6 +96,7 @@ public class ManejadorBD extends SQLiteOpenHelper {
         contentValues.put(LATITUD_ACT, Lat);
         contentValues.put(LONGITUD_ACT, Lon);
         contentValues.put(DUR_ACTIVIDAD, min);
+        contentValues.put(BATERIA, bateria);
 
         long resultado = sqLiteDatabase.insert(TAB_ACTIVIDAD, null, contentValues);
         sqLiteDatabase.close();
