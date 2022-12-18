@@ -297,31 +297,37 @@ MainActivity extends AppCompatActivity implements SensorEventListener {
             Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
         }*/
 
-        if (resultCode == RESULT_OK){
-            switch (requestCode){
+        try {
+            if (resultCode == RESULT_OK){
+                switch (requestCode){
 
-                case VENGO_GALERIA:
+                    case VENGO_GALERIA:
                         Uri ruta = data.getData();
                         editor.putString(IMAGE_PATH, ruta.toString());
                         editor.apply();
                         FotoPerfil.setImageURI(ruta);
-                    break;
-                case VENGO_CAMARA:
+                        break;
+                    case VENGO_CAMARA:
                         FotoPerfil.setImageBitmap(BitmapFactory.decodeFile(fichero.getAbsolutePath()));
                         editor.putString(IMAGE_PATH, fichero.getAbsolutePath());
                         editor.apply();
                         actualizarGaleria(fichero.getAbsolutePath());
-                    break;
-                case COD_CAMBIO:
+                        break;
+                    case COD_CAMBIO:
 
-                    break;
-                default:
-                    Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
-                    break;
+                        break;
+                    default:
+                        Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            } else {
+                Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
             }
-        } else {
-            Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+        } catch (Exception e){
+            e.printStackTrace();
         }
+
+
 
     }
 

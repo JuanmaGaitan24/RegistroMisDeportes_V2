@@ -15,4 +15,21 @@
     <string name="DescripcionDep">Description...</string>
     <string name="ModificarDeporte">Update Sport</string>
     <string name="BorrarDeporte">Delete Sport</string>
+    <string name="CamposVacios">Fill in the Name and Description fields to perform the action</string>
+    <string name="ModExisto">Action Carried Out Successfully</string>
+    <string name="ModError">Error performing the action</string>
+    <string name="ErrorModEli">"Choose one of the sports from the list to perform the action "</string>
+    <string name="Error">"An error has occurred "</string>
+    <string name="AgregarAct">Agregar Actividad</string>
+    <string name="Duracion">"Duration: "</string>
+    <string name="Minutos">Minutes...</string>
+    <string name="Deporte">"Sport: "</string>
+    <string name="Rellenar">Por Favor, Rellene todos los campos</string>
+    <string name="ErrorCrear">Error al insertar la actividad, Intentelo de nuevo mas tarde</string>
+    <string name="idDep">"ID Deporte: "</string>
+    <string name="fecha">"Fecha: "</string>
+    <string name="hora">"Hora: "</string>
+    <string name="latitud">"Latitud: "</string>
+    <string name="longitud">"Longitud: "</string>
+    <string name="Localizar">Localizar</string>
 </resources>

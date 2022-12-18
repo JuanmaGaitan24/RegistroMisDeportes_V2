@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/azul_muy_oscuro"
         android:ems="10"
@@ -29,7 +29,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/buttonSacarFoto3"
+        android:id="@+id/buttonModificarDeporte"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -47,7 +47,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/buttonSacarFoto4"
+        android:id="@+id/buttonBorrarDeporte"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSacarFoto3"
+        app:layout_constraintTop_toBottomOf="@+id/buttonModificarDeporte"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
@@ -75,10 +75,11 @@
         android:backgroundTint="@color/azul_muy_oscuro"
         android:fontFamily="@font/chopsic"
         android:text="@string/NuevoDeporte"
+        android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/ListViewDeportes"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonSacarFoto3"
+        app:layout_constraintStart_toEndOf="@+id/buttonModificarDeporte"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescripcion"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -92,6 +93,7 @@
         android:backgroundTint="@color/azul_muy_oscuro"
         android:fontFamily="@font/chopsic"
         android:text="@string/HaciaActividades"
+        android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,14 +113,14 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonActividades"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSacarFoto4" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonBorrarDeporte" />
 
     <EditText
         android:id="@+id/editTextDescripcion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/azul_muy_oscuro"
         android:ems="10"
@@ -137,12 +139,15 @@
 
     <Button
         android:id="@+id/ButtonConfiguracion"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:backgroundTint="@color/azul_muy_oscuro"
+        app:icon="@drawable/configuraciones"
+        app:iconGravity="end|textStart"
+        app:iconTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/editTextDescripcion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
