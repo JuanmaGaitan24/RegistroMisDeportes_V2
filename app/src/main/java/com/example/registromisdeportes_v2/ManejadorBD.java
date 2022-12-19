@@ -16,10 +16,8 @@ public class ManejadorBD extends SQLiteOpenHelper {
     private static final String ID_DEPORTE = "ID_DEPORTE";
     private static final String ID_ACTIVIDAD = "ID_ACTIVIDAD";
     private static final String NOM_DEPORTE = "NOM_DEPORTE";
-    private static final String NOM_ACTIVIDAD = "NOM_ACTIVIDAD";
     private static final String DES_DEPORTE = "DES_DEPORTE";
     private static final String DUR_ACTIVIDAD = "DUR_ACTIVIDAD";
-    private static final String TIP_DEPORTE = "TIP_DEPORTE";
     private static final String ID_DEP = "ID_DEP";
     private static final String FECHA_ACT = "FECHA_ACT";
     private static final String HORA_ACT = "HORA_ACT";
@@ -49,7 +47,7 @@ public class ManejadorBD extends SQLiteOpenHelper {
                 + LATITUD_ACT + " TEXT, "
                 + LONGITUD_ACT + " TEXT, "
                 + DUR_ACTIVIDAD + " INTEGER, "
-                + BATERIA + "INTEGER, "
+                + BATERIA + " INTEGER, "
                 + " FOREIGN KEY(" + ID_DEP + ") REFERENCES " + TAB_DEPORTES + "(" + ID_DEPORTE + ") "
                 + ")");
 

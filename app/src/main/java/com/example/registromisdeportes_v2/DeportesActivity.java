@@ -25,8 +25,9 @@ public class DeportesActivity extends AppCompatActivity {
 
     public static final String NUMERO = "NUMERO";
     private static final int COD_CAMBIO = 81;
+    private static final int COD_OPCIONES = 501;
     ListView listaDeportes;
-    Button btnAgregarDeporte, btnModificarDeporte, btnBorrarDeporte, btnActividades;
+    Button btnAgregarDeporte, btnModificarDeporte, btnBorrarDeporte, btnActividades, btnOpciones;
     TextView txtNombreDeporte, txtDescripcionDeporte;
 
     ArrayList<Deporte> deporte;
@@ -45,6 +46,7 @@ public class DeportesActivity extends AppCompatActivity {
         btnModificarDeporte = findViewById(R.id.buttonModificarDeporte);
         btnBorrarDeporte = findViewById(R.id.buttonBorrarDeporte);
         btnActividades = findViewById(R.id.buttonActividades);
+        btnOpciones = findViewById(R.id.ButtonConfiguracion);
         txtNombreDeporte = findViewById(R.id.editTextNombreDeporte);
         txtDescripcionDeporte = findViewById(R.id.editTextDescripcion);
 
@@ -142,6 +144,18 @@ public class DeportesActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+            }
+        });
+
+        btnOpciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent intent = new Intent(DeportesActivity.this, OpcionesActivity.class);
+                    startActivityForResult(intent, COD_OPCIONES);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
 

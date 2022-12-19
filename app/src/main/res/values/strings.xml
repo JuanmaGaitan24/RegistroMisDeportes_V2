@@ -32,4 +32,7 @@
     <string name="longitud">"Longitud: "</string>
     <string name="Localizar">Localizar</string>
     <string name="Bateria">Bateria:</string>
+    <string name="OffSonido">Sonido Apagado</string>
+    <string name="OnSonido">Sonido Encendido</string>
+    <string name="ActDesSonido" >Activar/Desactivar Sonido</string>
 </resources>

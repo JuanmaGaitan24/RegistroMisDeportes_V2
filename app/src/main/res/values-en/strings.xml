@@ -20,17 +20,20 @@
     <string name="ModError">Error performing the action</string>
     <string name="ErrorModEli">"Choose one of the sports from the list to perform the action "</string>
     <string name="Error">"An error has occurred "</string>
-    <string name="AgregarAct">Agregar Actividad</string>
+    <string name="AgregarAct">Add Activity</string>
     <string name="Duracion">"Duration: "</string>
     <string name="Minutos">Minutes...</string>
     <string name="Deporte">"Sport: "</string>
-    <string name="Rellenar">Por Favor, Rellene todos los campos</string>
-    <string name="ErrorCrear">Error al insertar la actividad, Intentelo de nuevo mas tarde</string>
-    <string name="idDep">"ID Deporte: "</string>
-    <string name="fecha">"Fecha: "</string>
-    <string name="hora">"Hora: "</string>
-    <string name="latitud">"Latitud: "</string>
+    <string name="Rellenar">Please fill in all the fields</string>
+    <string name="ErrorCrear">"Error inserting the activity, try again later "</string>
+    <string name="idDep">"ID Sport: "</string>
+    <string name="fecha">"Date: "</string>
+    <string name="hora">"Time: "</string>
+    <string name="latitud">"Latitude: "</string>
     <string name="longitud">"Longitud: "</string>
     <string name="Localizar">Localizar</string>
     <string name="Bateria">Bateria:</string>
+    <string name="OffSonido">Sound Off</string>
+    <string name="OnSonido">Sound On</string>
+    <string name="ActDesSonido" >Turn Sound On/Off</string>
 </resources>

@@ -112,7 +112,7 @@ public class ListarActividadesActivity extends AppCompatActivity {
             hora.setText(ArrayActividad[position].getHora());
             latitud.setText(ArrayActividad[position].getLatitud());
             longitud.setText(ArrayActividad[position].getLongitud());
-            bateria.setText(ArrayActividad[position].getBateria());
+            bateria.setText(String.valueOf(ArrayActividad[position].getBateria()));
 
             btnLocalizar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -166,13 +166,12 @@ public class ListarActividadesActivity extends AppCompatActivity {
                    ", latitud=" + latitud + '\'' +
                    ", longitud=" + longitud + '\'' +
                    ", duracion=" + duracion + '\'' +
+                   ", duracion=" + bateria + '\'' +
                    '}';
 
         }
 
-        public int getBateria() {
-            return bateria;
-        }
+        public int getBateria() {return bateria;}
 
         public void setBateria(int bateria) {
             this.bateria = bateria;

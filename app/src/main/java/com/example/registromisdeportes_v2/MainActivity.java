@@ -43,6 +43,7 @@ MainActivity extends AppCompatActivity implements SensorEventListener {
     private static final int VENGO_CAMARA = 76;
     private static final int CAMBIO_PANTALLA = 24;
     private static final int COD_CAMBIO = 13;
+    private static final String SONIDO = "SONIDO";
     private static int num_intentos = 3;
     private static final String CLAVE = "CLAVE";
     private static final String NOMBRE_FICHERO = "DATOS";
@@ -160,10 +161,13 @@ MainActivity extends AppCompatActivity implements SensorEventListener {
                     }
 
                 } else {
+                    boolean sonido = MisCredenciales.getBoolean(SONIDO, true);
                     Toast.makeText(MainActivity.this, "Numero de intentos alcanzado", Toast.LENGTH_SHORT).show();
                     bloquearBoton();
-                    mediaPlayer.setLooping(true);
-                    mediaPlayer.start();
+                    if (sonido){
+                        mediaPlayer.setLooping(true);
+                        mediaPlayer.start();
+                    }
                 }
 
             }
@@ -249,11 +253,13 @@ MainActivity extends AppCompatActivity implements SensorEventListener {
         SharedPreferences.Editor editor = MisCredenciales.edit();
         editor.putBoolean(BTN_BLOCK, false);
         editor.apply();
-        mediaPlayer.stop();
-        try {
-            mediaPlayer.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            try {
+                mediaPlayer.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         num_intentos = 3;
     }
